@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Gợi ý bộ số Vietlott Hôm Nay – Thử Vận May Của Bạn</title>
+  <meta name="description" content="Công cụ gợi ý bộ số Vietlott Mega 6/45 và Power 6/55 hôm nay. Phân tích thống kê tần suất, thử vận may của bạn ngay.">
+  <meta property="og:title" content="Gợi ý bộ số Vietlott Hôm Nay – Thử Vận May Của Bạn">
+  <meta property="og:description" content="Phân tích thống kê & Gợi ý số may mắn Vietlott 6/45, 6/55.">
+
+  <style>
+    :root {
+      --primary: #d32f2f; /* Màu đỏ Vietlott */
+      --primary-hover: #b71c1c;
+      --bg: #f0f2f5;
+      --text: #333;
+      --card-bg: #ffffff;
+    }
+    
+    * { box-sizing: border-box; }
+    
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding-bottom: 40px;
+    }
+
+    /* HEADER */
+    header {
+      background: var(--card-bg);
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .brand { display: flex; flex-direction: column; }
+    .brand h1 {
+      font-size: 18px;
+      margin: 0;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+    }
+    .brand span {
+      font-size: 11px;
+      color: #666;
+      font-weight: 500;
+    }
+
+    nav { display: flex; gap: 8px; }
+    nav button {
+      padding: 6px 12px;
+      border: 1px solid #eee;
+      background: #fff;
+      color: #555;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    nav button:hover {
+      background: #fdfdfd;
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    /* MAIN CONTAINER */
+    main {
+      max-width: 500px;
+      margin: 20px auto;
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    }
+
+    /* FORM ELEMENTS */
+    .control-group { margin-bottom: 15px; }
+    label {
+      display: block;
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 8px;
+      color: #444;
+    }
+    
+    select, input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      outline: none;
+      background: #fafafa;
+      transition: border 0.3s;
+    }
+    select:focus, input:focus {
+      border-color: var(--primary);
+      background: #fff;
+    }
+
+    /* BUTTON */
+    button.generate-btn {
+      width: 100%;
+      margin-top: 15px;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity 0.3s, transform 0.1s;
+      box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
+    }
+    button.generate-btn:active { transform: scale(0.98); }
+    button.generate-btn:disabled { 
+      opacity: 0.7; 
+      cursor: not-allowed; 
+      background: #999; 
+      box-shadow: none; 
+    }
+
+    /* RESULT AREA */
+    .result-area { 
+      margin-top: 30px; 
+      min-height: 50px; 
+    }
+    .result-label { 
+      text-align: center; 
+      font-size: 12px; 
+      color: #999; 
+      margin-bottom: 15px; 
+      text-transform: uppercase; 
+      letter-spacing: 1px;
+      display: none; /* Ẩn mặc định */
+    }
+    
+    .ticket-row {
+      background: #fff5f5;
+      border: 1px dashed #ffcdd2;
+      padding: 10px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      animation: slideDown 0.4s ease-out;
+    }
+    @keyframes slideDown { 
+      from { opacity: 0; transform: translateY(-10px); } 
+      to { opacity: 1; transform: translateY(0); } 
+    }
+
+    .ball {
+      width: 34px;
+      height: 34px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      box-shadow: inset -2px -2px 6px rgba(0,0,0,0.2);
+      border: 2px solid #fff;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 12px;
+      color: #888;
+      border-top: 1px solid #e1e1e1;
+      margin-top: 40px;
+    }
+    footer strong { color: #555; }
+
+    /* MODAL */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(2px);
+    }
+    .modal-content {
+      background: #fff;
+      padding: 25px;
+      border-radius: 16px;
+      width: 90%;
+      max-width: 320px;
+      text-align: center;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+    }
+    .modal img { width: 100%; max-width: 200px; border-radius: 8px; margin: 15px 0; border: 1px solid #eee; }
+    .close-btn {
+      background: #f1f1f1; border: none; padding: 10px 25px; border-radius: 20px; 
+      font-weight: 600; cursor: pointer; color: #333; margin-top: 10px;
+    }
+    .close-btn:hover { background: #e1e1e1; }
+
+    /* MOBILE RESPONSIVE */
+    @media (max-width: 480px) {
+      header { flex-direction: column; gap: 10px; align-items: flex-start; }
+      nav { width: 100%; justify-content: space-between; }
+      nav button { flex: 1; text-align: center; }
+      .ball { width: 30px; height: 30px; font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <h1>🎲 Gợi Ý Số Vietlott</h1>
+    <span>Dự đoán dựa trên thống kê & xác suất</span>
+  </div>
+  <nav>
+    <button onclick="openDonate()">☕ Donate</button>
+    <button onclick="joinGroup()">💬 Group</button>
+    <button onclick="openFeedback()">⭐ Góp ý</button>
+  </nav>
+</header>
+
+<main>
+  <div class="control-group">
+    <label>Loại vé</label>
+    <select id="game">
+      <option value="645">Mega 6/45 (Dễ trúng hơn)</option>
+      <option value="655">Power 6/55 (Giải thưởng lớn)</option>
+    </select>
+  </div>
+
+  <div class="control-group">
+    <label>Chiến thuật chọn số</label>
+    <select id="mode">
+      <option value="balanced">⚖️ Cân bằng (Khuyên dùng)</option>
+      <option value="safe">🛡️ An toàn (Số hay về)</option>
+      <option value="risky">🔥 Mạo hiểm (Số lâu chưa về)</option>
+    </select>
+  </div>
+
+  <div class="control-group">
+    <label>Số bộ cần tạo (Max 10)</label>
+    <input type="number" id="sets" value="5" min="1" max="10" inputmode="numeric">
+  </div>
+
+  <div class="control-group">
+    <label>Seed may mắn (Tùy chọn)</label>
+    <input type="text" id="seed" placeholder="VD: Ngày sinh, Số điện thoại...">
+  </div>
+
+  <button class="generate-btn" id="btnGen" onclick="generate()">🔮 Phân tích & Gợi ý</button>
+
+  <div class="result-area" id="resultArea"></div>
+</main>
+
+<footer>
+  <div style="font-weight: bold; margin-bottom: 5px;">⚠️ MIỄN TRỪ TRÁCH NHIỆM</div>
+  Website sử dụng thuật toán phân tích thống kê dữ liệu lịch sử.<br>
+  Chúng tôi <strong>không cam kết</strong> trúng thưởng và không khuyến khích hành vi cờ bạc.
+</footer>
+
+<div class="modal" id="donateModal" onclick="closeDonate()">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <h3 style="margin-top:0; color: var(--primary)">Ủng hộ Server ☕</h3>
+    <p style="font-size:13px; color:#666">Quét mã QR để ủng hộ team duy trì website nhé!</p>
+    
+    <img src="https://via.placeholder.com/200x200?text=QR+Code+Here" alt="QR Donate">
+    
+    <p style="font-weight:bold; margin:10px 0; font-size:14px;">
+      MB Bank: 0123456789<br>
+      Chủ TK: NGUYEN VAN A
+    </p>
+    <button class="close-btn" onclick="closeDonate()">Đóng</button>
+  </div>
+</div>
+
+<script>
+  // ============================================================
+  // QUAN TRỌNG: THAY LINK NÀY BẰNG LINK RENDER CỦA BẠN
+  // Ví dụ: const API_URL = "https://vietlott-api-nb78.onrender.com/generate";
+  // ============================================================
+  const API_URL = "http://127.0.0.1:8000/generate"; 
+
+  async function generate() {
+    const btn = document.getElementById("btnGen");
+    const resultArea = document.getElementById("resultArea");
+    
+    // 1. Get Values
+    const game = document.getElementById("game").value;
+    const mode = document.getElementById("mode").value;
+    let sets = parseInt(document.getElementById("sets").value);
+    const seed = document.getElementById("seed").value;
+
+    // 2. Validate
+    if (isNaN(sets) || sets < 1) sets = 1;
+    if (sets > 10) sets = 10;
+
+    // 3. UI Loading
+    btn.disabled = true;
+    btn.innerHTML = "⏳ Đang kết nối Server...";
+    resultArea.innerHTML = '<div style="text-align:center; padding:20px; color:#777; font-size:14px;">Đang tải dữ liệu thống kê & tính toán...<br><small>(Lần đầu có thể mất 30s nếu Server đang ngủ)</small></div>';
+
+    // 4. Build URL
+    let url = `${API_URL}?game=${game}&mode=${mode}&sets=${sets}`;
+    if (seed) url += `&seed=${encodeURIComponent(seed)}`;
+
+    try {
+      // Gọi API
+      const response = await fetch(https://vietlott-api-ajvx.onrender.com);
+      
+      if (!response.ok) throw new Error(`Server Error: ${response.status}`);
+
+      const data = await response.json();
+
+      // 5. Render HTML
+      if (!data.results || data.results.length === 0) {
+        resultArea.innerHTML = '<div style="text-align:center; color:red">Không tìm thấy bộ số phù hợp.</div>';
+        return;
+      }
+
+      let html = '<div class="result-label" style="display:block">✨ Kết quả gợi ý cho bạn ✨</div>';
+      
+      data.results.forEach((row, i) => {
+        const balls = row.map(num => {
+          // Thêm số 0 nếu nhỏ hơn 10
+          return `<div class="ball">${num < 10 ? '0'+num : num}</div>`;
+        }).join("");
+
+        // Hiệu ứng delay cho từng dòng
+        html += `<div class="ticket-row" style="animation-delay: ${i * 0.1}s">${balls}</div>`;
+      });
+
+      resultArea.innerHTML = html;
+
+    } catch (error) {
+      console.error(error);
+      resultArea.innerHTML = `
+        <div style="background:#ffebee; color:#c62828; padding:15px; border-radius:8px; text-align:center;">
+          <strong>❌ Lỗi kết nối!</strong><br>
+          <small style="display:block; margin-top:5px">1. Kiểm tra Internet<br>2. Kiểm tra Server Render đã chạy chưa<br>3. Kiểm tra link API trong code</small>
+        </div>
+      `;
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = "🔮 Phân tích & Gợi ý";
+    }
+  }
+
+  // Modal Logic
+  const modal = document.getElementById("donateModal");
+  function openDonate() { modal.style.display = "flex"; }
+  function closeDonate() { modal.style.display = "none"; }
+  
+  // Link Logic - Thay link của bạn vào đây
+  function joinGroup() { window.open("https://zalo.me/", "_blank"); }
+  function openFeedback() { window.open("https://forms.google.com/", "_blank"); }
+
+  // Click outside to close
+  window.onclick = function(e) { if (e.target == modal) closeDonate(); }
+</script>
+
+</body>
+</html>
